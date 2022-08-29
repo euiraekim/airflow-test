@@ -1,5 +1,6 @@
 FROM apache/airflow:2.0.0-python3.8
 
-CMD echo "1"
-CMD echo "2"
-CMD echo "3"
+EXPOSE 8080
+
+ENTRYPOINT [ "/bin/bash" ]
+CMD airflow db init
