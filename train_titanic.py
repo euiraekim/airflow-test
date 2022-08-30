@@ -41,6 +41,7 @@ def _preprocessing_data():
         df[feature] = le.transform(df[feature])
 
     df.to_csv('/tmp/titanic_preprocessed.csv', index=False)
+    print('csv file saved.')
 
 def _train_data():
     df = pd.read_csv('/tmp/titanic_preprocessed.csv')
