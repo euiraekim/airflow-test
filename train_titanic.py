@@ -46,8 +46,8 @@ def _train_data():
     df = pd.read_csv('/tmp/titanic_preprocessed.csv')
 
     # x, y split
-    y_df = titanic_df['Survived']
-    X_df = titanic_df.drop('Survived', axis=1)
+    y_df = df['Survived']
+    X_df = df.drop('Survived', axis=1)
 
     # train test split
     X_train, X_test, y_train, y_test = train_test_split(X_df, y_df, test_size=0.2, random_state=11)
