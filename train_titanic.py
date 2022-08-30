@@ -43,7 +43,6 @@ def _preprocessing_data():
 
     df.to_csv('/tmp/titanic_preprocessed.csv', index=False)
     print('csv file saved.')
-    time.sleep(1)
 
 def _train_data():
     df = pd.read_csv('/tmp/titanic_preprocessed.csv')
@@ -79,4 +78,4 @@ notify = BashOperator(
     dag=dag
 )
 
-download_dataset >> preprocessing_data >> notify
+download_dataset >> preprocessing_data >> train_data >> notify
