@@ -3,6 +3,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import pandas as pd
+import time
 
 import airflow
 from airflow import DAG
@@ -42,6 +43,7 @@ def _preprocessing_data():
 
     df.to_csv('/tmp/titanic_preprocessed.csv', index=False)
     print('csv file saved.')
+    time.sleep(1)
 
 def _train_data():
     df = pd.read_csv('/tmp/titanic_preprocessed.csv')
