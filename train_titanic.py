@@ -3,7 +3,6 @@ from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
 import pandas as pd
-import time
 
 import airflow
 from airflow import DAG
@@ -44,7 +43,7 @@ def _preprocessing_data():
     df.to_csv('/tmp/titanic_preprocessed.csv', index=False)
     print('csv file saved.')
 
-def _train_data():
+def _train_model():
     df = pd.read_csv('/tmp/titanic_preprocessed.csv')
 
     # x, y split
@@ -66,9 +65,9 @@ preprocessing_data = PythonOperator(
     dag=dag
 )
 
-train_data = PythonOperator(
-    task_id='train_data',
-    python_callable=_train_data,
+train_model = PythonOperator(
+    task_id='train_model',
+    python_callable=_train_model,
     dag=dag
 )
 
@@ -78,4 +77,4 @@ notify = BashOperator(
     dag=dag
 )
 
-download_dataset >> preprocessing_data >> train_data >> notify
+download_dataset >> preprocessing_data >> train_model >> notify
