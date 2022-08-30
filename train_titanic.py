@@ -17,7 +17,7 @@ dag = DAG(
 
 download_dataset = BashOperator(
     task_id='download_dataset',
-    bash_command='curl -o /tmp/titanic.csv -L https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv'
+    bash_command='curl -o /tmp/titanic.csv -L https://raw.githubusercontent.com/datasciencedojo/datasets/master/titanic.csv',
     dag=dag
 )
 
@@ -26,13 +26,13 @@ def _preprocessing_data():
 
 preprocessing_data = PythonOperator(
     task_id='preprocessing_data',
-    python_callable=_preprocessing_data
+    python_callable=_preprocessing_data,
     dag=dag
 )
 
 notify = BashOperator(
     task_id='notify',
-    bash_command='echo "pipeline is complete."'
+    bash_command='echo "pipeline is complete."',
     dag=dag
 )
 
